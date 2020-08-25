@@ -9,8 +9,29 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const firstQuestion = [
+    {
+        type: 'list',
+        name: 'Job description',
+        message: 'what position would you like to create a info card for? (select "no more" if you have entered all of the positions that you would like to.)',
+        choices: ["Manager", "Engineer", "Employee", "Intern", "No More"],
+    },
+]
+function init() {
+    console.log("Inside the init function")
+    inquirer.prompt(firstQuestion).then((response) => {
+        fs.writeFileSync("exampleREADME.md", generateMarkdown(response), function (err) {
 
-
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log("Success")
+            }
+        })
+    })
+};
+init();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
