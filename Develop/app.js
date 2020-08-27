@@ -14,7 +14,7 @@ const firstQuestion = [
         type: 'list',
         name: 'Job description',
         message: 'what position would you like to create a info card for? (select "no more" if you have entered all of the positions that you would like to.)',
-        choices: ["Manager", "Engineer", "Employee", "Intern", "No More"],
+        choices: ["Engineer", "Intern", "No More"],
     },
 ]
 function init() {
