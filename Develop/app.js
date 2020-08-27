@@ -10,10 +10,11 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const team = [];
 const newPerson = [
     {
         type: 'list',
-        name: 'Job description',
+        name: 'jobDescription',
         message: 'what position would you like to create a info card for? (select "no more" if you have entered all of the positions that you would like to.)',
         choices: ["Engineer", "Intern", "No More"],
     },
@@ -97,18 +98,69 @@ const internQuestions = [
 ]
 function init() {
     console.log("Inside the init function")
-    inquirer.prompt(newPerson).then((response) => {
-        fs.writeFileSync("exampleREADME.md", generateMarkdown(response), function (err) {
-
-            if (err) {
-                console.log(err)
-            }
-            else {
-                console.log("Success")
-            }
-        })
-    })
+    managerPrompt();
 };
+function otherPeople() {
+    console.log("Inside the oyther people function")
+    inquirer.prompt(newPerson).then((response) => {
+        switch (response.jobDescription) {
+            case "Engineer":
+                engineerPrompt();
+                break;
+            case "Intern":
+                internPrompt();
+                break;
+            case "No More":
+                createTeam();
+                break;
+        }
+
+    })
+}
+function managerPrompt() {
+    console.log("Inside the manager function")
+    inquirer.prompt(managerQuestions).then((response) => {
+        let name = response.managerName;
+        let id = response.managerId;
+        let email = response.managerEmail;
+        let officeNumber = response.officeNumber;
+        const manager = new Manager(name, id, email, officeNumber);
+        team.push(manager);
+        otherPeople();
+    })
+}
+function engineerPrompt() {
+    console.log("Inside the engineer function")
+    inquirer.prompt(engineerQuestions).then((response) => {
+        let name = response.engineerName;
+        let id = response.engineerId;
+        let email = response.engineerEmail;
+        let officeNumber = response.officeNumber;
+        const engineer = new Engineer(name, id, email, officeNumber);
+        team.push(engineer);
+        otherPeople();
+    })
+}
+function internPrompt() {
+    console.log("Inside the intern function")
+    inquirer.prompt(internQuestions).then((response) => {
+        let name = response.internName;
+        let id = response.internId;
+        let email = response.internEmail;
+        let officeNumber = response.officeNumber;
+        const intern = new Intern(name, id, email, officeNumber);
+        team.push(intern);
+        otherPeople();
+    })
+}
+function createTeam(){
+    fs.writeFile(outputPath, render(team), function(err){
+        if (err) {
+            return console.log(err)
+        }
+    })
+}
+
 init();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
