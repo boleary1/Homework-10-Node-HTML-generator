@@ -1,3 +1,4 @@
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -9,7 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const firstQuestion = [
+const newPerson = [
     {
         type: 'list',
         name: 'Job description',
@@ -17,9 +18,86 @@ const firstQuestion = [
         choices: ["Engineer", "Intern", "No More"],
     },
 ]
+const managerQuestions = [
+    {
+        type: 'input',
+        name: 'managerName',
+        message: "What is the manager of the team's name?",
+    },
+
+    {
+        type: 'input',
+        name: 'managerId',
+        message: "What is the manager's Id number?",
+    },
+
+    {
+        type: 'input',
+        name: 'managerEmail',
+        message: "What is the manager's email address?",
+    },
+
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: "What is the manager's Office Number?",
+    },
+]
+const engineerQuestions = [
+
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: "What is the Engineer's name?",
+    },
+
+    {
+        type: 'input',
+        name: 'engineerId',
+        message: "What is the Engineer's Id number?",
+    },
+
+    {
+        type: 'input',
+        name: 'engineerEmail',
+        message: "What is the engineer's email?",
+    },
+
+    {
+        type: 'input',
+        name: 'github',
+        message: "Enter this engineer's GitHub user name",
+    },
+]
+const internQuestions = [
+
+    {
+        type: 'input',
+        name: 'internName',
+        message: "What is the Intern's name?",
+    },
+
+    {
+        type: 'input',
+        name: 'internId',
+        message: "What is the intern's Id number?",
+    },
+
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: "What is the Intern's Email address?",
+    },
+
+    {
+        type: 'input',
+        name: 'school',
+        message: "Where does the Intern go to school?",
+    },
+]
 function init() {
     console.log("Inside the init function")
-    inquirer.prompt(firstQuestion).then((response) => {
+    inquirer.prompt(newPerson).then((response) => {
         fs.writeFileSync("exampleREADME.md", generateMarkdown(response), function (err) {
 
             if (err) {
