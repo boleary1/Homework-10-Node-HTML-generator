@@ -1,4 +1,23 @@
 # Homework-10-Node-HTML-generator
+## Live website URL:
+[Github repository](https://github.com/boleary1/Homework-10-Node-HTML-generator)
+</br>
+
+[live website](https://boleary1.github.io/Homework-10-Node-HTML-generator/)
+</br>
+
+[YouTube link](https://youtu.be/p1G6Ksli39I)
+
+## **Description:**
+Website built in Late August 2020.  The app works.  To create cards for job titles as selected from the terminal.    
+Last edit was 8/28/2020 by Brian O'leary.  Contact oleary.brian1@gmail.com with any questions.
+
+## **Instructions:**
+Clone the repository to your local machine.  Navigate to the app.js file in the terminal.  Type "npm start" proceed to answer all of the questions.  When you are done filling out all of the jobs.  The "team.html" file will be updated with the new team.  
+## **Screenshot:**
+
+![Screenshot of the created file in the web browser](htmlscreenshot.JPG)
+![Screenshot of vs code](vscode.JPG)
 
 Original homework description below.
 

@@ -112,6 +112,7 @@ function otherPeople() {
                 break;
             case "No More":
                 createTeam();
+                console.log("The team is created.  You can see the 'Team.html' file in the 'output' folder")
                 break;
         }
 
